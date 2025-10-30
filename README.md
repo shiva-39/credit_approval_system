@@ -36,15 +36,28 @@ Backend internship assignment - A Django-based credit approval system that proce
 ### 1. Register Customer
 `POST /register`
 
-**Request:**
-```json
-{
+**PowerShell Command:**
+```powershell
+Invoke-RestMethod -Uri "http://localhost:8000/register" -Method POST -ContentType "application/json" -Body '{
   "first_name": "John",
   "last_name": "Doe",
   "age": 30,
   "monthly_income": 50000,
   "phone_number": 9876543210
-}
+}'
+```
+
+**curl Command:**
+```bash
+curl -X POST http://localhost:8000/register \
+  -H "Content-Type: application/json" \
+  -d '{
+    "first_name": "John",
+    "last_name": "Doe",
+    "age": 30,
+    "monthly_income": 50000,
+    "phone_number": 9876543210
+  }'
 ```
 
 **Response:**
@@ -59,17 +72,31 @@ Backend internship assignment - A Django-based credit approval system that proce
 }
 ```
 
+---
+
 ### 2. Check Eligibility
 `POST /check-eligibility`
 
-**Request:**
-```json
-{
+**PowerShell Command:**
+```powershell
+Invoke-RestMethod -Uri "http://localhost:8000/check-eligibility" -Method POST -ContentType "application/json" -Body '{
   "customer_id": 1,
   "loan_amount": 500000,
   "interest_rate": 10.0,
   "tenure": 24
-}
+}'
+```
+
+**curl Command:**
+```bash
+curl -X POST http://localhost:8000/check-eligibility \
+  -H "Content-Type: application/json" \
+  -d '{
+    "customer_id": 1,
+    "loan_amount": 500000,
+    "interest_rate": 10.0,
+    "tenure": 24
+  }'
 ```
 
 **Response:**
@@ -84,17 +111,31 @@ Backend internship assignment - A Django-based credit approval system that proce
 }
 ```
 
+---
+
 ### 3. Create Loan
 `POST /create-loan`
 
-**Request:**
-```json
-{
+**PowerShell Command:**
+```powershell
+Invoke-RestMethod -Uri "http://localhost:8000/create-loan" -Method POST -ContentType "application/json" -Body '{
   "customer_id": 1,
   "loan_amount": 500000,
   "interest_rate": 10.0,
   "tenure": 24
-}
+}'
+```
+
+**curl Command:**
+```bash
+curl -X POST http://localhost:8000/create-loan \
+  -H "Content-Type: application/json" \
+  -d '{
+    "customer_id": 1,
+    "loan_amount": 500000,
+    "interest_rate": 10.0,
+    "tenure": 24
+  }'
 ```
 
 **Response:**
@@ -108,8 +149,20 @@ Backend internship assignment - A Django-based credit approval system that proce
 }
 ```
 
+---
+
 ### 4. View Loan
 `GET /view-loan/<loan_id>`
+
+**PowerShell Command:**
+```powershell
+Invoke-RestMethod -Uri "http://localhost:8000/view-loan/1" -Method GET
+```
+
+**curl Command:**
+```bash
+curl http://localhost:8000/view-loan/1
+```
 
 **Response:**
 ```json
@@ -129,8 +182,20 @@ Backend internship assignment - A Django-based credit approval system that proce
 }
 ```
 
+---
+
 ### 5. View Customer Loans
 `GET /view-loans/<customer_id>`
+
+**PowerShell Command:**
+```powershell
+Invoke-RestMethod -Uri "http://localhost:8000/view-loans/1" -Method GET
+```
+
+**curl Command:**
+```bash
+curl http://localhost:8000/view-loans/1
+```
 
 **Response:**
 ```json
