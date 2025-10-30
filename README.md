@@ -39,35 +39,22 @@ Backend internship assignment - A Django-based credit approval system that proce
 **PowerShell Command:**
 ```powershell
 Invoke-RestMethod -Uri "http://localhost:8000/register" -Method POST -ContentType "application/json" -Body '{
-  "first_name": "John",
-  "last_name": "Doe",
-  "age": 30,
-  "monthly_income": 50000,
+  "first_name": "Amit",
+  "last_name": "Kumar",
+  "age": 28,
+  "monthly_income": 75000,
   "phone_number": 9876543210
 }'
-```
-
-**curl Command:**
-```bash
-curl -X POST http://localhost:8000/register \
-  -H "Content-Type: application/json" \
-  -d '{
-    "first_name": "John",
-    "last_name": "Doe",
-    "age": 30,
-    "monthly_income": 50000,
-    "phone_number": 9876543210
-  }'
 ```
 
 **Response:**
 ```json
 {
-  "customer_id": 1,
-  "name": "John Doe",
-  "age": 30,
-  "monthly_income": 50000,
-  "approved_limit": 1800000,
+  "customer_id": 51,
+  "name": "Amit Kumar",
+  "age": 28,
+  "monthly_income": 75000,
+  "approved_limit": 2700000,
   "phone_number": 9876543210
 }
 ```
@@ -80,34 +67,22 @@ curl -X POST http://localhost:8000/register \
 **PowerShell Command:**
 ```powershell
 Invoke-RestMethod -Uri "http://localhost:8000/check-eligibility" -Method POST -ContentType "application/json" -Body '{
-  "customer_id": 1,
-  "loan_amount": 500000,
-  "interest_rate": 10.0,
-  "tenure": 24
+  "customer_id": 51,
+  "loan_amount": 800000,
+  "interest_rate": 11.0,
+  "tenure": 36
 }'
-```
-
-**curl Command:**
-```bash
-curl -X POST http://localhost:8000/check-eligibility \
-  -H "Content-Type: application/json" \
-  -d '{
-    "customer_id": 1,
-    "loan_amount": 500000,
-    "interest_rate": 10.0,
-    "tenure": 24
-  }'
 ```
 
 **Response:**
 ```json
 {
-  "customer_id": 1,
+  "customer_id": 51,
   "approval": true,
-  "interest_rate": 10.0,
-  "corrected_interest_rate": 10.0,
-  "tenure": 24,
-  "monthly_installment": 23018.68
+  "interest_rate": 11.0,
+  "corrected_interest_rate": 12.0,
+  "tenure": 36,
+  "monthly_installment": 26632.89
 }
 ```
 
@@ -119,33 +94,21 @@ curl -X POST http://localhost:8000/check-eligibility \
 **PowerShell Command:**
 ```powershell
 Invoke-RestMethod -Uri "http://localhost:8000/create-loan" -Method POST -ContentType "application/json" -Body '{
-  "customer_id": 1,
-  "loan_amount": 500000,
-  "interest_rate": 10.0,
-  "tenure": 24
+  "customer_id": 51,
+  "loan_amount": 800000,
+  "interest_rate": 12.0,
+  "tenure": 36
 }'
-```
-
-**curl Command:**
-```bash
-curl -X POST http://localhost:8000/create-loan \
-  -H "Content-Type: application/json" \
-  -d '{
-    "customer_id": 1,
-    "loan_amount": 500000,
-    "interest_rate": 10.0,
-    "tenure": 24
-  }'
 ```
 
 **Response:**
 ```json
 {
-  "loan_id": 1,
-  "customer_id": 1,
+  "loan_id": 63,
+  "customer_id": 51,
   "loan_approved": true,
   "message": "Loan approved",
-  "monthly_installment": 23018.68
+  "monthly_installment": 26632.89
 }
 ```
 
@@ -156,29 +119,24 @@ curl -X POST http://localhost:8000/create-loan \
 
 **PowerShell Command:**
 ```powershell
-Invoke-RestMethod -Uri "http://localhost:8000/view-loan/1" -Method GET
-```
-
-**curl Command:**
-```bash
-curl http://localhost:8000/view-loan/1
+Invoke-RestMethod -Uri "http://localhost:8000/view-loan/63" -Method GET
 ```
 
 **Response:**
 ```json
 {
-  "loan_id": 1,
+  "loan_id": 63,
   "customer": {
-    "id": 1,
-    "first_name": "John",
-    "last_name": "Doe",
+    "id": 51,
+    "first_name": "Amit",
+    "last_name": "Kumar",
     "phone_number": 9876543210,
-    "age": 30
+    "age": 28
   },
-  "loan_amount": 500000,
-  "interest_rate": 10.0,
-  "monthly_installment": 23018.68,
-  "tenure": 24
+  "loan_amount": 800000,
+  "interest_rate": 12.0,
+  "monthly_installment": 26632.89,
+  "tenure": 36
 }
 ```
 
@@ -189,23 +147,18 @@ curl http://localhost:8000/view-loan/1
 
 **PowerShell Command:**
 ```powershell
-Invoke-RestMethod -Uri "http://localhost:8000/view-loans/1" -Method GET
-```
-
-**curl Command:**
-```bash
-curl http://localhost:8000/view-loans/1
+Invoke-RestMethod -Uri "http://localhost:8000/view-loans/51" -Method GET
 ```
 
 **Response:**
 ```json
 [
   {
-    "loan_id": 1,
-    "loan_amount": 500000,
-    "interest_rate": 10.0,
-    "monthly_installment": 23018.68,
-    "repayments_left": 24
+    "loan_id": 63,
+    "loan_amount": 800000,
+    "interest_rate": 12.0,
+    "monthly_installment": 26632.89,
+    "repayments_left": 36
   }
 ]
 ```
