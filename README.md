@@ -39,10 +39,10 @@ Backend internship assignment - A Django-based credit approval system that proce
 **PowerShell Command:**
 ```powershell
 Invoke-RestMethod -Uri "http://localhost:8000/register" -Method POST -ContentType "application/json" -Body '{
-  "first_name": "Amit",
-  "last_name": "Kumar",
-  "age": 28,
-  "monthly_income": 75000,
+  "first_name": "Rajesh",
+  "last_name": "Sharma",
+  "age": 32,
+  "monthly_income": 85000,
   "phone_number": 9876543210
 }'
 ```
@@ -51,10 +51,10 @@ Invoke-RestMethod -Uri "http://localhost:8000/register" -Method POST -ContentTyp
 ```json
 {
   "customer_id": 51,
-  "name": "Amit Kumar",
-  "age": 28,
-  "monthly_income": 75000,
-  "approved_limit": 2700000,
+  "name": "Rajesh Sharma",
+  "age": 32,
+  "monthly_income": 85000,
+  "approved_limit": 3000000,
   "phone_number": 9876543210
 }
 ```
@@ -67,22 +67,22 @@ Invoke-RestMethod -Uri "http://localhost:8000/register" -Method POST -ContentTyp
 **PowerShell Command:**
 ```powershell
 Invoke-RestMethod -Uri "http://localhost:8000/check-eligibility" -Method POST -ContentType "application/json" -Body '{
-  "customer_id": 51,
-  "loan_amount": 800000,
-  "interest_rate": 11.0,
-  "tenure": 36
+  "customer_id": 1,
+  "loan_amount": 200000,
+  "interest_rate": 10.0,
+  "tenure": 12
 }'
 ```
 
 **Response:**
 ```json
 {
-  "customer_id": 51,
+  "customer_id": 1,
   "approval": true,
-  "interest_rate": 11.0,
+  "interest_rate": 10.0,
   "corrected_interest_rate": 12.0,
-  "tenure": 36,
-  "monthly_installment": 26632.89
+  "tenure": 12,
+  "monthly_installment": 17770.21
 }
 ```
 
@@ -94,10 +94,10 @@ Invoke-RestMethod -Uri "http://localhost:8000/check-eligibility" -Method POST -C
 **PowerShell Command:**
 ```powershell
 Invoke-RestMethod -Uri "http://localhost:8000/create-loan" -Method POST -ContentType "application/json" -Body '{
-  "customer_id": 51,
-  "loan_amount": 800000,
+  "customer_id": 1,
+  "loan_amount": 200000,
   "interest_rate": 12.0,
-  "tenure": 36
+  "tenure": 12
 }'
 ```
 
@@ -105,10 +105,10 @@ Invoke-RestMethod -Uri "http://localhost:8000/create-loan" -Method POST -Content
 ```json
 {
   "loan_id": 63,
-  "customer_id": 51,
+  "customer_id": 1,
   "loan_approved": true,
   "message": "Loan approved",
-  "monthly_installment": 26632.89
+  "monthly_installment": 17770.21
 }
 ```
 
@@ -119,24 +119,24 @@ Invoke-RestMethod -Uri "http://localhost:8000/create-loan" -Method POST -Content
 
 **PowerShell Command:**
 ```powershell
-Invoke-RestMethod -Uri "http://localhost:8000/view-loan/63" -Method GET
+Invoke-RestMethod -Uri "http://localhost:8000/view-loan/1" -Method GET
 ```
 
 **Response:**
 ```json
 {
-  "loan_id": 63,
+  "loan_id": 1,
   "customer": {
-    "id": 51,
-    "first_name": "Amit",
-    "last_name": "Kumar",
-    "phone_number": 9876543210,
-    "age": 28
+    "id": 1,
+    "first_name": "Lisa",
+    "last_name": "Miller",
+    "phone_number": 9041278222,
+    "age": null
   },
-  "loan_amount": 800000,
-  "interest_rate": 12.0,
-  "monthly_installment": 26632.89,
-  "tenure": 36
+  "loan_amount": 125305.00,
+  "interest_rate": 17.08,
+  "monthly_installment": 5827.44,
+  "tenure": 24
 }
 ```
 
@@ -147,18 +147,18 @@ Invoke-RestMethod -Uri "http://localhost:8000/view-loan/63" -Method GET
 
 **PowerShell Command:**
 ```powershell
-Invoke-RestMethod -Uri "http://localhost:8000/view-loans/51" -Method GET
+Invoke-RestMethod -Uri "http://localhost:8000/view-loans/1" -Method GET
 ```
 
 **Response:**
 ```json
 [
   {
-    "loan_id": 63,
-    "loan_amount": 800000,
-    "interest_rate": 12.0,
-    "monthly_installment": 26632.89,
-    "repayments_left": 36
+    "loan_id": 1,
+    "loan_amount": 125305.00,
+    "interest_rate": 17.08,
+    "monthly_installment": 5827.44,
+    "repayments_left": 24
   }
 ]
 ```
